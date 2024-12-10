@@ -1,0 +1,8 @@
+model MoviesOnGenres{
+    movie   Movie @relation(fields: [movieId], references: [id])
+    movieId Int
+    genre   Genre @relation(fields: [genreId], references: [id])
+    genreId Int 
+
+    @@id([movieId, genreId])
+}

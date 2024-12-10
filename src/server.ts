@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
-import path from 'path'
+import path from 'path';
+import movieRouter from "./MovieApp/movieRouter";
 
 const app: Express = express();
 
@@ -7,14 +8,17 @@ const HOST: string = 'localhost';
 const PORT: number = 8000;
 
 app.set('view engine', 'ejs');
-app.set('views', path.join('templates'))
+app.set('views', path.join('templates'));
+app.set('json spaces', 2);
 
-app.use('/static/', express.static(path.join(__dirname, 'static')))
+app.use(express.json());
+app.use('/static/', express.static(path.join(__dirname, 'static')));
+app.use('/movie/', movieRouter);
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('main page')
+    res.send('main page');
 })
 
 app.listen(PORT, HOST, () => {
-    console.log("running")
+    console.log("running");
 })
