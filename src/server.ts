@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import path from 'path';
 import movieRouter from "./MovieApp/movieRouter";
+import cors from 'cors';
 
 const app: Express = express();
 
@@ -12,6 +13,7 @@ app.set('views', path.join('templates'));
 app.set('json spaces', 2);
 
 app.use(express.json());
+app.use(cors());
 app.use('/static/', express.static(path.join(__dirname, 'static')));
 app.use('/movie/', movieRouter);
 

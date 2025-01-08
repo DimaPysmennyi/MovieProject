@@ -4,15 +4,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/server.ts"
+    "start": "ts-node src/server.ts",
+    "seed": "ts-node prisma/seed.ts"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "@types/cors": "^2.8.17",
     "@types/ejs": "^3.1.5",
     "@types/express": "^5.0.0",
+    "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "path": "^0.12.7",
