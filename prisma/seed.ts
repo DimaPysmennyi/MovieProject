@@ -13,6 +13,7 @@ export async function createMovieWithGenre(){
             description: 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched, Team Sonic must seek out an unlikely alliance.',
             facts: 'Fact1 Fact2',
             previewSrc: 'https://m.media-amazon.com/images/M/MV5BMjZjNjE5NDEtOWJjYS00Mjk2LWI1ZDYtOWI1ZWI3MzRjM2UzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+            shots: "https://i0.wp.com/tailschannel.com/wp-content/uploads/2024/08/sonicmovie35.png?resize=800%2C500&ssl=1",
             genres: {
                 create: [
                     {
