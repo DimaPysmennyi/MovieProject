@@ -21,11 +21,17 @@ async function getGenreById(id: string){
     return context;
 }
 
+async function updateMovieRating(id: string, rating: number){
+    let context = await movieRepository.updateMovieRating(+id, rating);
+    return context;
+}
+
 const movieService = {
     getAllMovies: getAllMovies,
     getMovieById: getMovieById,
     getAllGenres: getAllGenres,
-    getGenreById: getGenreById
+    getGenreById: getGenreById,
+    updateMovieRating: updateMovieRating
 }
 
 export default movieService;

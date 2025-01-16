@@ -1,15 +1,16 @@
 model Movie{
     id             Int              @id @default(autoincrement())
     name           String 
-    rating         Int
+    rating         Float
+    allRates       String           @default("")
     age            String
     year           Int
     country        String
     language       String
-    description    String           @default("")
-    facts          String           @default("")
-    previewSrc     String           @default("")
-    shots          String           @default("")
+    description    String        
+    facts          String           
+    previewSrc     String           
+    shots          String                  
     genres         MoviesOnGenres[] 
     reviews        Review[]
     actors         MoviesOnActors[]

@@ -1,10 +1,25 @@
 import client from "../client/client";
 
+function ratingCalculation(ratingList: string){
+    let ratingArray = ratingList.split(',');
+    let numberRatingArray = [];
+    
+    for (let rate of ratingArray){
+        numberRatingArray.push(+rate);
+    }
+    
+    const ratingAvg = numberRatingArray.reduce((a, b) => a+b, 0) / numberRatingArray.length;
+    console.log(ratingAvg);
+    return ratingAvg;
+
+}
+
 async function getAllMovies(){
     let movies = await client.movie.findMany({
         include: {
             genres: true,
-            // actors: true,
+            actors: true,
+            reviews: true
         }
     });
     return movies;
@@ -18,6 +33,7 @@ async function getMovieById(id: number){
         include: {
             genres: true,
             actors: true,
+            reviews: true
         }
     })
 
@@ -40,11 +56,32 @@ async function getGenreById(id: number){
     return genre;
 }
 
+async function updateMovieRating(id: number, newRating: number){
+    let movie = await client.movie.findUnique({
+        where: {
+            id: id,
+        }
+    });
+
+    let updatedMovie = await client.movie.update({
+        where: {
+            id: id,
+        },
+        data: {
+            allRates: `${movie?.allRates},${newRating}`,
+            rating: ratingCalculation(`${movie?.allRates},${newRating}`)
+        }
+    });
+
+    return updatedMovie;
+}
+
 const movieRepository = {
     getAllMovies: getAllMovies,
     getMovieById: getMovieById,
     getAllGenres: getAllGenres,
-    getGenreById: getGenreById
+    getGenreById: getGenreById,
+    updateMovieRating: updateMovieRating,
 }
 
 export default movieRepository;
