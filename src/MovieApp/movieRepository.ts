@@ -63,17 +63,33 @@ async function updateMovieRating(id: number, newRating: number){
         }
     });
 
-    let updatedMovie = await client.movie.update({
-        where: {
-            id: id,
-        },
-        data: {
-            allRates: `${movie?.allRates},${newRating}`,
-            rating: ratingCalculation(`${movie?.allRates},${newRating}`)
-        }
-    });
+    if (!movie?.allRates) {
+        let updatedMovie = await client.movie.update({
+            where: {
+                id: id,
+            },
+            data: {
+                allRates: `${newRating}`,
+                rating: ratingCalculation(`${movie?.allRates},${newRating}`)
+            }
+        });
+        return updatedMovie;
 
-    return updatedMovie;
+    }else {
+        let updatedMovie = await client.movie.update({
+            where: {
+                id: id,
+            },
+            data: {
+                allRates: `${movie?.allRates},${newRating}`,
+                rating: ratingCalculation(`${movie?.allRates},${newRating}`)
+            }
+        });
+        return updatedMovie;
+    }
+    
+
+    
 }
 
 const movieRepository = {
