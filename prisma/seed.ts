@@ -13,28 +13,28 @@ export async function createMovieWithGenre(){
             facts: 'Fact1 Fact2',
             previewSrc: 'https://m.media-amazon.com/images/M/MV5BMjZjNjE5NDEtOWJjYS00Mjk2LWI1ZDYtOWI1ZWI3MzRjM2UzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
             shots: "https://i0.wp.com/tailschannel.com/wp-content/uploads/2024/08/sonicmovie35.png?resize=800%2C500&ssl=1, ",
-            // genres: {
-            //     create: [
-            //         {
-            //             genre: {
-            //                 connect: {
-            //                     id: 1
-            //                 }
-            //             }
-            //         }
-            //     ]
-            // },
-            // actors: {
-            //     create: [
-            //         {
-            //             actor: {
-            //                 connect: {
-            //                     id: 1
-            //                 }
-            //             }
-            //         }
-            //     ]
-            // }
+            genres: {
+                create: [
+                    {
+                        genre: {
+                            connect: {
+                                id: 1
+                            }
+                        }
+                    }
+                ]
+            },
+            actors: {
+                create: [
+                    {
+                        actor: {
+                            connect: {
+                                id: 1
+                            }
+                        }
+                    }
+                ]
+            }
         }
     })
 }
