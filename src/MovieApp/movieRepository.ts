@@ -56,6 +56,15 @@ async function getGenreById(id: number){
     return genre;
 }
 
+async function getGenreByName(name: string){
+    let genre = await client.genre.findUnique({
+        where: {
+            name: name,
+        }
+    })
+    return genre;
+}
+
 async function updateMovieRating(id: number, newRating: number){
     let movie = await client.movie.findUnique({
         where: {
@@ -63,6 +72,20 @@ async function updateMovieRating(id: number, newRating: number){
         }
     });
 
+    if (!movie?.allRates) {
+        let updatedMovie = await client.movie.update({
+            where: {
+                id: id,
+            },
+            data: {
+                allRates: `${newRating}`,
+                rating: ratingCalculation(`${movie?.allRates},${newRating}`)
+            }
+        });
+        return updatedMovie;
+
+    }
+    
     let updatedMovie = await client.movie.update({
         where: {
             id: id,
@@ -72,7 +95,6 @@ async function updateMovieRating(id: number, newRating: number){
             rating: ratingCalculation(`${movie?.allRates},${newRating}`)
         }
     });
-
     return updatedMovie;
 }
 
@@ -81,6 +103,7 @@ const movieRepository = {
     getMovieById: getMovieById,
     getAllGenres: getAllGenres,
     getGenreById: getGenreById,
+    getGenreByName: getGenreByName,
     updateMovieRating: updateMovieRating,
 }
 

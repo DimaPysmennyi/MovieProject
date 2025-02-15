@@ -1,5 +1,6 @@
 package-lock.json
 /node_modules
 /prisma/migrations/
-/prisma/schema/db/
+/prisma/db/
+/prisma/db/data.sqlite
 .env
