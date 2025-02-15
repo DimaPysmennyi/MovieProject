@@ -24,6 +24,12 @@ export async function getGenreById(req: Request, res: Response){
     res.json(context);
 }
 
+export async function getGenreByName(req: Request, res: Response){
+    const name = req.params.name;
+    const context = await movieService.getGenreByName(name);
+    res.json(context);
+}
+
 export async function updateMovieRating(req: Request, res: Response){
     const id = req.params.id;
     const rating = req.body.rating;

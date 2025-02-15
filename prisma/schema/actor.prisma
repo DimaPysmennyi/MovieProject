@@ -1,7 +1,12 @@
 model Actor{
-    id      Int     @id @default(autoincrement())
-    name    String 
-    movies  MoviesOnActors[]
+    id              Int              @id @default(autoincrement())
+    name            String           @unique 
+    birthdate       String           @default("") 
+    country         String           @default("") 
+    movieCount      Int              @default(0)
+    awards          String           @default("")  
+    src             String           @default("") 
+    movies          MoviesOnActors[]
 
     @@unique([id, name])
 }
