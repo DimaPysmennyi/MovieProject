@@ -3,6 +3,7 @@ model Actor{
     name            String           @unique 
     birthdate       String           @default("") 
     country         String           @default("") 
+    description     String           @default("")   
     movieCount      Int              @default(0)
     awards          String           @default("")  
     src             String           @default("") 

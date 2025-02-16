@@ -144,6 +144,123 @@ const movieArray = [
                 },
             ]
         }
+    },
+    {
+        name: 'Sonic The Hedgehog 3',
+        rating: 7,
+        age: '12+',
+        year: 2024,
+        country: 'USA',
+        language: 'English',
+        description: 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched, Team Sonic must seek out an unlikely alliance.',
+        facts: 'After their initial race, Knuckles and Tails are there waiting for Sonic tapping their feet with their hands on their hips. This is the same animation in the games if you leave your character standing for too long',
+        previewSrc: 'https://m.media-amazon.com/images/M/MV5BMjZjNjE5NDEtOWJjYS00Mjk2LWI1ZDYtOWI1ZWI3MzRjM2UzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+        shots: "https://i0.wp.com/tailschannel.com/wp-content/uploads/2024/08/sonicmovie35.png?resize=800%2C500&ssl=1",
+        genres: {
+            create: [
+                {
+                    genre: {
+                        connect: {
+                            id: 3
+                        }
+                    }
+                },
+                {
+                    genre: {
+                        connect: {
+                            id: 4
+                        }
+                    }
+                },
+                {
+                    genre: {
+                        connect: {
+                            id: 2
+                        }
+                    }
+                }
+            ]
+        },
+        actors: {
+            create: [
+                {
+                    actor: {
+                        connect: {
+                            id: 13
+                        }
+                    }
+                },
+                {
+                    actor: {
+                        connect: {
+                            id: 24
+                        }
+                    }
+                },
+                {
+                    actor: {
+                        connect: {
+                            id: 25
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        name: 'Groundhog Day',
+        rating: 8,
+        age: '12+',
+        year: 1993,
+        country: 'USA',
+        language: 'English',
+        description: 'A narcissistic, self-centered weatherman finds himself in a time loop on Groundhog Day.',
+        facts: 'Bill Murray was bitten by the groundhog twice during shooting. Murray received a course of rabies vaccines, as a result.',
+        previewSrc: 'https://m.media-amazon.com/images/M/MV5BOWE3MjQ3ZDAtNDQ2MC00YjBjLTk0ZWYtNjQ0YzQ4YWE3YTEyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+        shots: "https://www.cincinnati.com/gcdn/media/2022/03/22/USATODAY/usatsports/247WallSt.com-247WS-1072792-groundhog-day.jpg",
+        genres: {
+            create: [
+                {
+                    genre: {
+                        connect: {
+                            id: 3
+                        }
+                    }
+                },
+                {
+                    genre: {
+                        connect: {
+                            id: 2
+                        }
+                    }
+                },
+                {
+                    genre: {
+                        connect: {
+                            id: 10
+                        }
+                    }
+                }
+            ]
+        },
+        actors: {
+            create: [
+                {
+                    actor: {
+                        connect: {
+                            id: 26
+                        }
+                    }
+                },
+                {
+                    actor: {
+                        connect: {
+                            id: 27
+                        }
+                    }
+                },
+            ]
+        }
     }
 ]
 
@@ -271,7 +388,7 @@ const actorsArray = [
 
 export async function createMovieWithGenre(){
     await client.movie.create({
-        data: movieArray[2]     
+        data: movieArray[4]     
     })
 }
 
@@ -304,7 +421,7 @@ async function createGenre(){
 async function createActor(){
     await client.actor.create({
         data: {
-            name: "Keanu Reeves"
+            name: "Andie MacDowell"
         }
     })
 }

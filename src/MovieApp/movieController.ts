@@ -36,3 +36,9 @@ export async function updateMovieRating(req: Request, res: Response){
     let context = await movieService.updateMovieRating(id, rating);
     res.json(context);
 }
+
+export async function getActorById(req: Request, res: Response){
+    const id = req.params.id;
+    let context = await movieService.getActorById(+id);
+    res.json(context);
+}

@@ -1,5 +1,5 @@
 import express from 'express';
-import {  getAllMovies, getMovieById, getAllGenres, getGenreById, updateMovieRating, getGenreByName } from './movieController';
+import {  getAllMovies, getMovieById, getAllGenres, getGenreById, updateMovieRating, getGenreByName, getActorById } from './movieController';
 
 const movieRouter = express.Router();
 
@@ -9,5 +9,6 @@ movieRouter.get('/:id', getMovieById);
 movieRouter.get('/genre/:id', getGenreById);
 movieRouter.get('/genre/:name', getGenreByName);
 movieRouter.post('/:id/updateMovieRating', updateMovieRating);
+movieRouter.get('/actor/:id', getActorById);
 
 export default movieRouter;

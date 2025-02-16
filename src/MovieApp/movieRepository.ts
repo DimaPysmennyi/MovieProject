@@ -98,6 +98,18 @@ async function updateMovieRating(id: number, newRating: number){
     return updatedMovie;
 }
 
+async function getActorById(id: number){
+    let actor = await client.actor.findUnique({
+        where: {
+            id: id
+        },
+        include: {
+            movies: true
+        }
+    })
+    return actor;
+}
+
 const movieRepository = {
     getAllMovies: getAllMovies,
     getMovieById: getMovieById,
@@ -105,6 +117,7 @@ const movieRepository = {
     getGenreById: getGenreById,
     getGenreByName: getGenreByName,
     updateMovieRating: updateMovieRating,
+    getActorById: getActorById
 }
 
 export default movieRepository;
