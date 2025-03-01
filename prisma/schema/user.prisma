@@ -1,6 +1,11 @@
 model User{
-    id      Int     @id @default(autoincrement())
-    name    String
-    email   String  @unique
-    reviews Review[]
+    id              Int     @id     @default(autoincrement())
+    name            String
+    email           String  @unique
+    password        String          
+    reviews         Review[]        
+    movies          Movie[]
+    picture         String          @default("")
+    age             Int             @default(18)
+    description     String          @default("No description")
 }

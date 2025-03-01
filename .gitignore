@@ -4,3 +4,4 @@ package-lock.json
 /prisma/db/
 /prisma/db/data.sqlite
 .env
+/src/config/token.ts

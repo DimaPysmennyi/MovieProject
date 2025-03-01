@@ -1,0 +1,33 @@
+import userService from "./userService";
+import { Request, Response } from "express";
+import { sign } from "jsonwebtoken";
+import { SECRET_KEY } from "../config/token";
+
+async function registerUser(req: Request, res: Response){
+    const data = req.body;
+    const result = await userService.registerUser(data);
+    if (result.status == "error"){
+        res.send(result.message);
+        return;
+    }
+
+    res.json(result.data);
+}
+
+async function authUser(req: Request, res: Response){
+    const data = req.body;
+    const result = await userService.authUser(data.email, data.password);
+    if (result.status == "error"){
+        res.json(result.message);
+        return;
+    }
+
+    res.json(result.data);
+}
+
+const userController = {
+    registerUser: registerUser,
+    authUser: authUser
+}
+
+export default userController;

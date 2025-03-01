@@ -248,14 +248,14 @@ const movieArray = [
                 {
                     actor: {
                         connect: {
-                            id: 26
+                            id: 25
                         }
                     }
                 },
                 {
                     actor: {
                         connect: {
-                            id: 27
+                            id: 26
                         }
                     }
                 },
@@ -301,6 +301,10 @@ const genreArray = [
         name: "Historical",
         description: "Set in a real place, during a culturally recognizable time. The details and the action in the story can be a mix of actual events and ones from the author's imagination as they fill in the gaps."
     },
+    {
+        name: "Drama",
+        description: "The drama genre is a broad category that features stories portraying human experiences, emotions, conflicts, and relationships in a realistic and emotionally impactful way."
+    }
 
         
 ]
@@ -382,13 +386,30 @@ const actorsArray = [
     },
     {
         name: "Hugh Jackman"
+    },
+    {
+        name: "Lily-Rose Depp"
+    },
+    {
+        name: "Bill Skarsgård"
+    },
+    {
+        name: "Ben Schwartz"
+    },
+    {
+        name: "Keanu Reeves"
+    },
+    {
+        name: "Bill Murray"
+    },
+    {
+        name: "Andie McDowell"
     }
-
 ]
 
 export async function createMovieWithGenre(){
     await client.movie.create({
-        data: movieArray[4]     
+        data: movieArray[4]
     })
 }
 
@@ -400,9 +421,9 @@ async function createUser(){
             email: "email1@gmail.com",
             reviews: {
                 create: [
-                    {title: 'Beatiful Movie!', text: 'I really like this!', movieId: 4},
-                    {title: 'Amazing!', text: 'Super cool!', movieId: 4},
-                    {title: 'Bad', text: 'Boooooo', movieId: 4}
+                    {title: 'Beatiful Movie!', text: 'I really like this!', movieId: 5},
+                    {title: 'Amazing!', text: 'Super cool!', movieId: 6},
+                    {title: 'Bad', text: 'Boooooo', movieId: 7}
                 ]
             }
         }
@@ -410,24 +431,40 @@ async function createUser(){
 }
 
 async function createGenre(){
-    await client.genre.create({
-        data: {
-            name: "Drama",
-            description: "The drama genre is a broad category that features stories portraying human experiences, emotions, conflicts, and relationships in a realistic and emotionally impactful way."
-        }
+    await client.genre.createMany({
+        data: genreArray
     })
 }
 
 async function createActor(){
-    await client.actor.create({
+    await client.actor.createMany({
+        data: actorsArray
+    })
+}
+
+async function updateMovie(){
+    await client.movie.update({
+        where: {
+            id: 5,
+        },
         data: {
-            name: "Andie MacDowell"
+            actors: {
+                create: [
+                    {
+                        actor: {
+                            connect: {
+                                id: 16
+                            }
+                        }
+                    }
+                ]
+            }
         }
     })
 }
 
 // createGenre();
-createMovieWithGenre();
+// createMovieWithGenre();
 // createUser();
 // createActor();
-// updateMovie();
+updateMovie();
