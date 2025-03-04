@@ -42,28 +42,7 @@ async function getMovieById(id: number){
     return movie;
 }
 
-async function getAllGenres(){
-    let genres = await client.genre.findMany({});
-    return genres;
-}
 
-async function getGenreById(id: number){
-    let genre = await client.genre.findUnique({
-        where: {
-            id: id,
-        }
-    })
-    return genre;
-}
-
-async function getGenreByName(name: string){
-    let genre = await client.genre.findUnique({
-        where: {
-            name: name,
-        }
-    })
-    return genre;
-}
 
 async function updateMovieRating(id: number, newRating: number){
     let movie = await client.movie.findUnique({
@@ -113,9 +92,6 @@ async function getActorById(id: number){
 const movieRepository = {
     getAllMovies: getAllMovies,
     getMovieById: getMovieById,
-    getAllGenres: getAllGenres,
-    getGenreById: getGenreById,
-    getGenreByName: getGenreByName,
     updateMovieRating: updateMovieRating,
     getActorById: getActorById
 }

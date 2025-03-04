@@ -1,37 +1,37 @@
+import { IError, ISuccess } from "../types/types";
 import movieRepository from "./movieRepository";
+import { Movie } from "./types";
 
-async function getAllMovies(){
-    let context = await movieRepository.getAllMovies()
-    return context;
+async function getAllMovies(): Promise <IError | ISuccess<Movie[]>>{
+    let context = await movieRepository.getAllMovies();
+    if (!context){
+        return {status: "error", message: "Did not get all movies"}
+    }
+    
+    return {status: "success", data: context}
 }
 
-async function getMovieById(id: string){
+async function getMovieById(id: string): Promise <IError | ISuccess<Movie>>{
     let context = await movieRepository.getMovieById(+id);
-    return context;
+    if (!context){
+        return {status: "error", message: "Did not get movie"}
+    }
+    
+    return {status: "success", data: context}
 }
 
-async function getAllGenres(){
-    let context = await movieRepository.getAllGenres();
-    return context;
-}
 
-
-async function getGenreById(id: string){
-    let context = await movieRepository.getGenreById(+id);
-    return context;
-}
-
-async function updateMovieRating(id: string, rating: number){
+async function updateMovieRating(id: string, rating: number): Promise <IError | ISuccess<Movie>>{
     let context = await movieRepository.updateMovieRating(+id, rating);
-    return context;
+    if (!context){
+        return {status: "error", message: "Could not update rating"}
+    }
+    
+    return {status: "success", data: context}
 }
 
-async function getGenreByName(name: string){
-    let context = await movieRepository.getGenreByName(name);
-    return context;
-}
 
-async function getActorById(id: number){
+async function getActorById(id: number) {
     let context = await movieRepository.getActorById(id);
     return context;
 }
@@ -39,9 +39,6 @@ async function getActorById(id: number){
 const movieService = {
     getAllMovies: getAllMovies,
     getMovieById: getMovieById,
-    getAllGenres: getAllGenres,
-    getGenreById: getGenreById,
-    getGenreByName: getGenreByName,
     updateMovieRating: updateMovieRating,
     getActorById: getActorById
 }

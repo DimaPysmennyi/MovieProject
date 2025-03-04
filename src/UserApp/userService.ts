@@ -43,8 +43,37 @@ async function authUser(email: string, password: string): Promise <IError | ISuc
     return {status: "success", data: token};
 }
 
+async function getAllUsers(): Promise <IError | ISuccess<User[]>>{
+    const users = await userRepository.getAllUsers();
+    if (!users){
+        return {status: "error", message: "Failed to fetch users"}
+    }
+
+    return {status: "success", data: users};
+
+}
+
+async function getUserById(id: number): Promise <IError | ISuccess<User>>{
+    const user = await userRepository.getUserById(id);
+    if (!user){
+        return {status: "error", message: "User not found"}
+    }
+    return {status: "success", data: user};
+}
+
+async function updateUser(id: number, data: CreateUser): Promise <IError | ISuccess<User>>{
+    const updatedUser = await userRepository.updateUser(id, data);
+    if (!updatedUser){
+        return {status: "error", message: "Failed to update user"}
+    }
+    return {status: "success", data: updatedUser};
+}
+
 const userService = {
     registerUser: registerUser,
-    authUser: authUser
+    authUser: authUser,
+    getAllUsers: getAllUsers,
+    getUserById: getUserById,
+    updateUser: updateUser,
 }
 export default userService;

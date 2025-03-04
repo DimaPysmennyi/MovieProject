@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import path from 'path';
 import movieRouter from "./MovieApp/movieRouter";
 import userRouter from './UserApp/userRouter';
+import genreRouter from './GenreApp/genreRouter';
 import cors from 'cors';
 
 const app: Express = express();
@@ -17,7 +18,8 @@ app.use(cors({
     origin: ['http://localhost:3000/']
 }));
 app.use('/movie/', movieRouter);
-app.use('/user/', userRouter)
+app.use('/genre/', genreRouter);
+app.use('/user/', userRouter);
 
 app.listen(PORT, HOST, () => {
     console.log("running");
